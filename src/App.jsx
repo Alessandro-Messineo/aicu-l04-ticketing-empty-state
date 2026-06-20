@@ -51,7 +51,10 @@ export default function App() {
 
       {status === "loading" && <p className="state-message">Caricamento ticket...</p>}
       {status === "error" && <p className="state-message state-message--error">{error}</p>}
-      {status === "ready" && <TicketList tickets={tickets} />}
+      {status === "ready" && tickets.length === 0 && (
+        <p className="state-message">Non ci sono ticket aperti. Quando verra' creato un nuovo ticket, lo vedrai qui.</p>
+      )}
+      {status === "ready" && tickets.length > 0 && <TicketList tickets={tickets} />}
     </main>
   );
 }
